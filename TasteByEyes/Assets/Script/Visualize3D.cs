@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Visualize3D : MonoBehaviour {
 
+
     /// <summary>
     /// Consente di passare alla visualizzazione 3D caricando il file specificato
     /// </summary>
@@ -12,7 +13,7 @@ public class Visualize3D : MonoBehaviour {
     public void ChangeScene(string fileToLoad)
     {
         ObjectLoader.FileToLoad = fileToLoad;
-        SceneManager.LoadScene("3DView");        
+        SceneManager.LoadScene("3DView");
     }
-    
+
 }
