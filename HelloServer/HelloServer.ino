@@ -19,10 +19,8 @@ bool RESET_MACHINE = true;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-  pinMode(2, OUTPUT);
-  //digitalWrite(2, 1);
   delay(1000);
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println();
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
@@ -52,6 +50,7 @@ void setup() {
 
 void loop() 
 {
+  //Serial.println(analogRead(0));
   if(RESET_MACHINE == true)
   {     
     // Check if a client has connected
@@ -79,12 +78,13 @@ void loop()
   {
     if(client.connected())
     {
-      // Prepare the response
-      byte buff[255];
-      buff[0] = 1;
-
-      // Send the response to the client
-      client.write(buff,1);      
+      if (Serial.available() >0) {
+        // Prepare the response
+        byte buff[1];
+        buff[0] = Serial.read();  //gets one byte from serial buffer     
+        // Send the response to the client
+        client.write(buff,1); 
+      }     
       delay(1);
       
     }
