@@ -7,7 +7,9 @@
 const char* ssid = "Telecom-85517507";
 const char* password = "Canguro9.900";
 WiFiClient client;
-
+IPAddress ip(192, 168, 1, 51); //set static ip
+IPAddress gateway(192, 168, 1, 1); //set getteway
+IPAddress subnet(255, 255, 255, 0);//set subnet
 
 WiFiServer server(8052);
 
@@ -22,7 +24,8 @@ void setup() {
   delay(1000);
   Serial.begin(9600);
   Serial.println();
-  WiFi.mode(WIFI_STA);
+  //WiFi.mode(WIFI_STA);
+  WiFi.config(ip, gateway, subnet);
   WiFi.begin(ssid, password);
   
   while (WiFi.status() != WL_CONNECTED) {
@@ -64,28 +67,50 @@ void loop()
 
     // Wait until the client sends some data
     Serial.println("new client");
-    while(!client.available()){
+    /*while(!client.available()){
       delay(1);
     }
     
     // Read the first line of the request
     String req = client.readStringUntil('\r');
     Serial.println(req);
-    client.flush();
+    client.flush();*/
     
   }
   else
   {
     if(client.connected())
     {
-      if (Serial.available() >0) {
-        // Prepare the response
-        byte buff[1];
-        buff[0] = Serial.read();  //gets one byte from serial buffer     
-        // Send the response to the client
-        client.write(buff,1); 
-      }     
-      delay(1);
+      if (Serial.available() > 0)
+      {
+        if (Serial.available() > 1) {
+          // Prepare the response
+          byte buff[2];
+          buff[1] = Serial.read();  // gets MSB byte from serial buffer     
+          buff[0] = Serial.read();  //gets LSB byte from serial buffer
+
+          // Send the int to the client
+          client.write(buff,2); 
+        }else{
+          // 2 tentativo
+          delay(1);
+          if (Serial.available() > 1) {
+            // Prepare the response
+            byte buff[2];
+            buff[1] = Serial.read();  // gets MSB byte from serial buffer     
+            buff[0] = Serial.read();  //gets LSB byte from serial buffer
+            
+            // Send the int to the client
+            client.write(buff,2); 
+          }
+          else
+          {
+            // pulisco il buffer seriale
+            Serial.flush();   
+          }
+        }
+        delay(1);
+      }
       
     }
     else
@@ -96,6 +121,6 @@ void loop()
       Serial.println("Client disonnected");  
     }
   }
-  delay(1000);
+  delay(10);
 
 }

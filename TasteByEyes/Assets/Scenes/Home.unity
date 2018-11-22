@@ -5499,6 +5499,46 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1054090570}
   m_CullTransparentMesh: 0
+--- !u!1 &1073285267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1073285269}
+  - component: {fileID: 1073285268}
+  m_Layer: 0
+  m_Name: Options Loader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1073285268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1073285267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5fc853e63ef5ec468b13a72e8d2de90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1073285269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1073285267}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.5477147, y: -11.996024, z: 6.165374}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1089020398
 GameObject:
   m_ObjectHideFlags: 0
@@ -6030,7 +6070,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1427455557309824, guid: 8f569e837df7b6b4eb1a443ba50fff62, type: 2}
       propertyPath: m_Name
-      value: YouTube
+      value: Settings
       objectReference: {fileID: 0}
     - target: {fileID: 1208160910735040, guid: 8f569e837df7b6b4eb1a443ba50fff62, type: 2}
       propertyPath: m_IsActive
@@ -6060,7 +6100,7 @@ Prefab:
     - target: {fileID: 114420109816551794, guid: 8f569e837df7b6b4eb1a443ba50fff62,
         type: 2}
       propertyPath: m_Text
-      value: YouTube Channel
+      value: Options
       objectReference: {fileID: 0}
     - target: {fileID: 114866056047139538, guid: 8f569e837df7b6b4eb1a443ba50fff62,
         type: 2}
@@ -6076,11 +6116,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1281410846}
+      objectReference: {fileID: 1073285268}
     - target: {fileID: 114866056047139538, guid: 8f569e837df7b6b4eb1a443ba50fff62,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: urlLinkOrWeb
+      value: OpenOptionsScene
       objectReference: {fileID: 0}
     - target: {fileID: 114866056047139538, guid: 8f569e837df7b6b4eb1a443ba50fff62,
         type: 2}
@@ -6665,10 +6705,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1281410844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731973609e4a7a94aa4d2f33c86dc13f, type: 3}
+  m_Script: {fileID: 11500000, guid: c5fc853e63ef5ec468b13a72e8d2de90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  URL: https://www.youtube.com/channel/UCzk6MFt0qP7aZivsCE8bU7A
 --- !u!1 &1312683956
 GameObject:
   m_ObjectHideFlags: 0

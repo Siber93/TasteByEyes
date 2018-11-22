@@ -19,10 +19,19 @@ public class ObjectLoader : MonoBehaviour {
     // Oggetto all'interno del quale verrà inserito il 3d
     public GameObject ContainerView;
 
-    public static string FileToLoad = ""; 
+    public static string FileToLoad = "";
 
-	// Use this for initialization
-	void Start () {
+    GameObject obj = null;
+
+    Queue<short> rotationQueue = new Queue<short>();
+
+
+    short smoothing_aim = 0;
+    float current_smoothing = 0;
+    const float SMOOTHING_FACTOR = 0.6f;
+
+    // Use this for initialization
+    void Start () {
         if(ContainerView != null &&
             FileToLoad != "")
         {
@@ -30,7 +39,7 @@ public class ObjectLoader : MonoBehaviour {
             GameObject pNewObject = (GameObject)GameObject.Instantiate(pPrefab, Vector3.zero, Quaternion.identity);*/
 
             // Ottengo l'oggetto da caricare
-            GameObject obj = Instantiate(Resources.Load(FileToLoad) as GameObject);
+            obj = Instantiate(Resources.Load(FileToLoad) as GameObject);
 
             // Lo assegno al container
             obj.transform.SetParent(ContainerView.transform);
@@ -38,8 +47,8 @@ public class ObjectLoader : MonoBehaviour {
             // Lo scalo
             obj.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
 
-
-
+            // Lo ruoto
+            obj.transform.Rotate(new Vector3(1, 0, 0), -90);
 
             ConnectToTcpServer();
 
@@ -48,10 +57,21 @@ public class ObjectLoader : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(rotationQueue.Count>0)
         {
-            SendMessage();
+            // Cambio obiettivo nel processo di smoothing
+            smoothing_aim = rotationQueue.Dequeue();
+
+            // Resetto lo smoothing;
+            current_smoothing = 0;
         }
+
+        float last_value = current_smoothing;
+
+        current_smoothing = (float)(SMOOTHING_FACTOR * smoothing_aim + (1 - SMOOTHING_FACTOR) * current_smoothing);
+
+        // Rotate the object
+        obj.transform.Rotate(new Vector3(0, 0, 1), current_smoothing - last_value);
     }
 
 
@@ -80,7 +100,7 @@ public class ObjectLoader : MonoBehaviour {
     {
         try
         {
-            socketConnection = new TcpClient("192.168.1.12", 8052);
+            socketConnection = new TcpClient("192.168.1.51", 8052);
             Byte[] bytes = new Byte[1024];
             while (true)
             {
@@ -93,9 +113,11 @@ public class ObjectLoader : MonoBehaviour {
                     {
                         var incommingData = new byte[length];
                         Array.Copy(bytes, 0, incommingData, 0, length);
-                        // Convert byte array to string message. 						
-                        string serverMessage = ""+ bytes[0];
-                        Debug.Log("server message received as: " + serverMessage);
+                        short val = BitConverter.ToInt16(bytes, 0);
+                        val *= 2 ;
+                        // Do the rotatating operation			
+                        rotationQueue.Enqueue(val);
+                        Debug.Log("Received: " + val.ToString());
                     }
                 }
             }
@@ -133,5 +155,6 @@ public class ObjectLoader : MonoBehaviour {
             Debug.Log("Socket exception: " + socketException);
         }
     }
+
 }
 
