@@ -3619,8 +3619,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 992040684}
-          m_MethodName: ChangeScene
+        - m_Target: {fileID: 1073285268}
+          m_MethodName: Load3DScene
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -5159,46 +5159,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 976092630}
   m_CullTransparentMesh: 0
---- !u!1 &992040683
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 992040685}
-  - component: {fileID: 992040684}
-  m_Layer: 0
-  m_Name: 3D Visualizer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &992040684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 992040683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb431f3d471d854ab17279e4a16c2ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &992040685
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 992040683}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1001365997
 GameObject:
   m_ObjectHideFlags: 0
@@ -5509,7 +5469,7 @@ GameObject:
   - component: {fileID: 1073285269}
   - component: {fileID: 1073285268}
   m_Layer: 0
-  m_Name: Options Loader
+  m_Name: Navigator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5523,7 +5483,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073285267}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5fc853e63ef5ec468b13a72e8d2de90, type: 3}
+  m_Script: {fileID: 11500000, guid: 97d7cb1a7a19fc74e8d4924bde85ff8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1073285269
@@ -5537,7 +5497,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1089020398
 GameObject:
@@ -6105,7 +6065,7 @@ Prefab:
     - target: {fileID: 114866056047139538, guid: 8f569e837df7b6b4eb1a443ba50fff62,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114866056047139538, guid: 8f569e837df7b6b4eb1a443ba50fff62,
         type: 2}
@@ -6120,7 +6080,7 @@ Prefab:
     - target: {fileID: 114866056047139538, guid: 8f569e837df7b6b4eb1a443ba50fff62,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenOptionsScene
+      value: LoadScene
       objectReference: {fileID: 0}
     - target: {fileID: 114866056047139538, guid: 8f569e837df7b6b4eb1a443ba50fff62,
         type: 2}
@@ -6135,6 +6095,11 @@ Prefab:
     - target: {fileID: 1427455557309824, guid: 8f569e837df7b6b4eb1a443ba50fff62, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114866056047139538, guid: 8f569e837df7b6b4eb1a443ba50fff62,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Options
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f569e837df7b6b4eb1a443ba50fff62, type: 2}

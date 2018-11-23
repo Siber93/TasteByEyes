@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Vuforia;
 
 public class VuforiaSettingsManager : MonoBehaviour {
@@ -26,4 +27,5 @@ public class VuforiaSettingsManager : MonoBehaviour {
             DigitalEyewearARController.Instance.SetSeeThroughConfiguration(DigitalEyewearARController.SeeThroughConfiguration.Vuforia);
         }
     }
+    
 }
