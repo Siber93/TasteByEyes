@@ -1,17 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Vuforia;
 
-public class Navigator : MonoBehaviour {
+public class Navigator : MonoBehaviour, IVirtualButtonEventHandler {
 
-    /// <summary>
-    /// Distrugge tutte le istanze della scena indicata
-    /// </summary>
-    public void UnloadScene(string name)
+
+
+    public GameObject BackBtn;
+
+    void Start()
     {
-        SceneManager.UnloadSceneAsync(name);
+        if(BackBtn != null)
+        {
+            BackBtn.GetComponent<VirtualButtonBehaviour>().RegisterEventHandler(this);
+        }
     }
+
 
 
     /// <summary>
@@ -20,8 +27,16 @@ public class Navigator : MonoBehaviour {
     /// <param name="fileToLoad"> File da caricare nel 3D</param>
     public void Load3DScene(string fileToLoad)
     {
-        ObjectLoader.FileToLoad = fileToLoad;
-        SceneManager.LoadScene("3DView");
+        if (QRreader.Ip_Control_Address != "")
+        {
+            ObjectLoader.FileToLoad = fileToLoad;
+            LoadScene("3DView");
+        }
+        else
+        {
+            // Avverto che l'Ip non è settato
+            MessageBox.ShowMessageBox("IP not set", "Remote control device's IP has not been set. Please do it by QR code reading on settings menu.");
+        }
     }
 
     /// <summary>
@@ -33,4 +48,13 @@ public class Navigator : MonoBehaviour {
         SceneManager.LoadScene(scene);
     }
 
+    public void OnButtonPressed(VirtualButtonBehaviour vb)
+    {
+        LoadScene("Home");
+    }
+
+    public void OnButtonReleased(VirtualButtonBehaviour vb)
+    {
+        //throw new System.NotImplementedException();
+    }
 }

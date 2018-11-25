@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using ZXing;
 using ZXing.QrCode;
 
@@ -15,11 +16,23 @@ public class QRreader : MonoBehaviour {
     private WebCamTexture camTexture;
     private Rect screenRect;
 
+    GameObject label;
+    Text txt;
+
     /// <summary>
     /// True  => E' stato cliccato il bottone per resettare l'IP
     /// False => Nessuna richiesta di lettua QR pendente
     /// </summary>
     private bool Read = false;
+
+
+    void Start()
+    {
+        label = GameObject.Find("OptionsContainer/IPtxt");
+        txt = label.GetComponent(typeof(Text)) as Text;
+        //Ip_Control_Address = "192.168.1.10";
+        txt.text = "HW IP: " + Ip_Control_Address;
+    }
 
     /// <summary>
     /// Handler del click sul bottone di rilettura indirizzo IP
@@ -35,6 +48,7 @@ public class QRreader : MonoBehaviour {
             camTexture.Play();
         }
         Read = true;
+        Debug.Log("QR Reading");
     }
 
     void OnGUI()
@@ -53,7 +67,8 @@ public class QRreader : MonoBehaviour {
                 if (result != null)
                 {
                     Read = false;
-                    Debug.Log("DECODED TEXT FROM QR: " + result.Text);
+                    Ip_Control_Address = result.Text;
+                    txt.text = "HW IP: " + result.Text;
                 }
             }
             catch (Exception ex) { Debug.LogWarning(ex.Message); }
