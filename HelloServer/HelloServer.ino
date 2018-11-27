@@ -4,11 +4,11 @@
 #include <ESP8266mDNS.h>
 #include <math.h>
 
-const char* ssid = "Telecom-85517507";
-const char* password = "Canguro9.900";
+const char* ssid = "SiberNet";
+const char* password = "fragoleAndroid";
 WiFiClient client;
-IPAddress ip(192, 168, 1, 51); //set static ip
-IPAddress gateway(192, 168, 1, 1); //set getteway
+IPAddress ip(192, 168, 43, 20); //set static ip
+IPAddress gateway(192, 168, 43, 1); //set getteway
 IPAddress subnet(255, 255, 255, 0);//set subnet
 
 WiFiServer server(8052);

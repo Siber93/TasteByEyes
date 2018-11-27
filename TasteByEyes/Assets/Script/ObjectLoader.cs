@@ -23,7 +23,7 @@ public class ObjectLoader : MonoBehaviour {
 
     GameObject obj = null;
 
-    Queue<short> rotationQueue = new Queue<short>();
+    public static Queue<short> RotationQueue = new Queue<short>();
 
 
     short smoothing_aim = 0;
@@ -32,7 +32,9 @@ public class ObjectLoader : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if(ContainerView != null &&
+        // Pulisco la coda per sicurezza
+        RotationQueue.Clear();
+        if (ContainerView != null &&
             FileToLoad != "")
         {
             /*UnityEngine.Object pPrefab = Resources.Load("Assets/Pizza/13917_Pepperoni_v2_l2"); // note: not .prefab!
@@ -57,10 +59,10 @@ public class ObjectLoader : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(rotationQueue.Count>0)
+        if(RotationQueue.Count>0)
         {
             // Cambio obiettivo nel processo di smoothing
-            smoothing_aim = rotationQueue.Dequeue();
+            smoothing_aim = RotationQueue.Dequeue();
 
             // Resetto lo smoothing;
             current_smoothing = 0;
@@ -100,7 +102,7 @@ public class ObjectLoader : MonoBehaviour {
     {
         try
         {
-            socketConnection = new TcpClient("192.168.1.51", 8052);
+            socketConnection = new TcpClient(QRreader.Ip_Control_Address, 8052);
             Byte[] bytes = new Byte[1024];
             while (true)
             {
@@ -116,7 +118,7 @@ public class ObjectLoader : MonoBehaviour {
                         short val = BitConverter.ToInt16(bytes, 0);
                         val *= 2 ;
                         // Do the rotatating operation			
-                        rotationQueue.Enqueue(val);
+                        RotationQueue.Enqueue(val);
                         Debug.Log("Received: " + val.ToString());
                     }
                 }
