@@ -16,7 +16,7 @@ public class SwipeDrawer : MonoBehaviour
         positions[0] = Camera.main.ScreenToWorldPoint(new Vector3(data.StartPosition.x, data.StartPosition.y, zOffset));
         positions[1] = Camera.main.ScreenToWorldPoint(new Vector3(data.EndPosition.x, data.EndPosition.y, zOffset));
 
-        ObjectLoader.RotationQueue.Enqueue((short)(positions[1].x - positions[0].x));
+        ObjectLoader.RotationQueue.Enqueue((short)((positions[1].x - positions[0].x)*15));
 
     }
 }
