@@ -634,7 +634,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SMOOTH BORDER
+  m_Text: PIZZA
 --- !u!222 &76438399
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3832,7 +3832,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f72a6fc522f638440acde9d42f93aebc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d983f9558483d4d4b995943509e144bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5966,6 +5966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d7cb1a7a19fc74e8d4924bde85ff8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackBtn: {fileID: 0}
 --- !u!4 &1073285269
 Transform:
   m_ObjectHideFlags: 0
@@ -6570,7 +6571,7 @@ Prefab:
     - target: {fileID: 114992588607235212, guid: 8f569e837df7b6b4eb1a443ba50fff62,
         type: 2}
       propertyPath: m_Text
-      value: YouTube Channel
+      value: Options
       objectReference: {fileID: 0}
     - target: {fileID: 1427455557309824, guid: 8f569e837df7b6b4eb1a443ba50fff62, type: 2}
       propertyPath: m_IsActive
@@ -11203,11 +11204,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1639745123}
+      objectReference: {fileID: 0}
     - target: {fileID: 114866056047139538, guid: 8f569e837df7b6b4eb1a443ba50fff62,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: urlLinkOrWeb
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114866056047139538, guid: 8f569e837df7b6b4eb1a443ba50fff62,
         type: 2}
