@@ -7,6 +7,7 @@ public class SwipeDrawer : MonoBehaviour
 
     private void Awake()
     {
+        SwipeDetector.OnSwipe -= SwipeDetector_OnSwipe;
         SwipeDetector.OnSwipe += SwipeDetector_OnSwipe;
     }
 
