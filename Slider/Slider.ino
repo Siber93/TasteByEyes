@@ -68,9 +68,13 @@ void loop()
           if(avg_index == AVG_NUM-1)
           {
             // Invio
-            /*Serial.write(mean >> 8);      // MSB                  
-            Serial.write(mean & 0xFF);    // LSB*/
+#ifdef DEBUG
             Serial.println(mean);
+#else
+            Serial.write(mean >> 8);      // MSB                  
+            Serial.write(mean & 0xFF);    // LSB
+#endif
+            
           }
           else
           {

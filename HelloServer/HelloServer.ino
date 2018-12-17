@@ -4,6 +4,8 @@
 #include <ESP8266mDNS.h>
 #include <math.h>
 
+#define DEBUG
+
 const char* ssid = "SiberNet";
 const char* password = "fragoleAndroid";
 WiFiClient client;
@@ -22,29 +24,26 @@ bool RESET_MACHINE = true;
 // the setup function runs once when you press reset or power the board
 void setup() {
   delay(1000);
-  Serial.begin(9600);
-  Serial.println();
+  Serial.begin(9600);  
   //WiFi.mode(WIFI_STA);
   WiFi.config(ip, gateway, subnet);
   WiFi.begin(ssid, password);
   
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
+#ifdef DEBUG
     Serial.print(".");
+#endif
   }
 
-
+#ifdef DEBUG
   Serial.println("");
   Serial.println("WiFi connected");  
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
+#endif
 
-  // Start the server
   server.begin();
-  Serial.println("Server started");
-
-  // Print the IP address
-  Serial.println(WiFi.localIP());
 }
 
 
@@ -66,7 +65,9 @@ void loop()
 
 
     // Wait until the client sends some data
+#ifdef DEBUG
     Serial.println("new client");
+#endif
     /*while(!client.available()){
       delay(1);
     }
@@ -118,7 +119,9 @@ void loop()
       client.stop();
       delay(1);
       RESET_MACHINE = true;
+#ifdef DEBUG
       Serial.println("Client disonnected");  
+#endif
     }
   }
   delay(10);
